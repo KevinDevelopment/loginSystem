@@ -26,7 +26,7 @@ export default function Login() {
       .then(response => response.json())
       .then(json => {
         setErrors(json.message);
-        localStorage.setItem("key", json.token);
+        localStorage.setItem("token", json.token);
 
         if (json.message === "Successfully logged in") {
 

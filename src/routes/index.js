@@ -11,6 +11,7 @@ export default function Rounting() {
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/users" element={<ListOfUsers />} />
+        <Route path="*" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );
