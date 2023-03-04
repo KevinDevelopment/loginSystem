@@ -1,15 +1,18 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./index.css";
 
-import { Form, Label, Input, Button } from "reactstrap";
+import { Form, Label, Input, Button, Spinner } from "reactstrap";
 
 import logo from "../../images/Colorido 1.png";
 
 export default function Login() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState()
   const [password, setPassword] = useState();
   const [errors, setErrors] = useState();
+  const [spinner, setSpinner] = useState(false)
 
   function sendUserData() {
     fetch("http://localhost:8080/signin", {
@@ -22,7 +25,19 @@ export default function Login() {
     })
       .then(response => response.json())
       .then(json => {
-        setErrors(json.message)
+        setErrors(json.message);
+        localStorage.setItem("key", json.token);
+
+        if (json.message === "Successfully logged in") {
+
+          setSpinner(true)
+
+          setTimeout(() => {
+            navigate("/users");
+          }, 2000);
+        }
+
+
       })
       .catch(err => console.log(err))
   }
@@ -50,12 +65,19 @@ export default function Login() {
               <Input type="password" placeholder="password" onChange={(e) => [setPassword(e.target.value), setErrors(" ")]} />
             </div>
 
-            {
-              errors === "Successfully logged in" ?
-                <div style={{ textAlign: "center", color: "green" }}>{errors}</div> :
-                <div style={{ textAlign: "center", color: "red" }}>{errors}</div>
+            <div style={{ textAlign: "center" }}>
+              {
+                spinner ? <Spinner>Loading...</Spinner> : null
+              }
 
-            }
+              {
+                errors === "Successfully logged in" ?
+                  <div style={{ textAlign: "center", color: "green" }}>{errors}</div> :
+                  <div style={{ textAlign: "center", color: "red" }}>{errors}</div>
+
+              }
+            </div>
+
 
             <div style={{ textAlign: "center" }}>
               <Button color="danger" className="col-md-11" onClick={sendUserData}>Login</Button>

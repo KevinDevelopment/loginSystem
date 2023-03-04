@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Login from "../pages/login/login";
 import Register from "../pages/register/register";
+import ListOfUsers from "../pages/users/users";
 
 export default function Rounting() {
   return (
@@ -9,6 +10,7 @@ export default function Rounting() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/users" element={<ListOfUsers />} />
       </Routes>
     </BrowserRouter>
   );

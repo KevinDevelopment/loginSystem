@@ -1,16 +1,18 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-import { Form, div, Label, Input, Button } from "reactstrap";
+import { Form, div, Label, Input, Button, Spinner } from "reactstrap";
 
 import logo from "../../images/Colorido 1.png";
 
 export default function Register() {
+  const navigate = useNavigate();
 
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [errors, setErrors] = useState();
+  const [spinner, setSpinner] = useState(false);
 
 
   function sendUserData() {
@@ -26,6 +28,14 @@ export default function Register() {
       .then(response => response.json())
       .then(json => {
         setErrors(json.message);
+        if (json.message === "Successfully registered user") {
+
+          setSpinner(true);
+          
+          setTimeout(() => {
+            navigate("/");
+          }, 2000);
+        }
       })
       .catch(err => console.log(err))
   }
@@ -58,7 +68,11 @@ export default function Register() {
               <Input type="password" placeholder="password" id="userPassword" required onChange={(e) => [setPassword(e.target.value), setErrors(" ")]} />
             </div>
 
-            <div style={{ marginBottom: 10 }}>
+            <div style={{ marginBottom: 10, textAlign: "center" }}>
+              {
+                spinner ? <Spinner>Loading...</Spinner> : null
+              }
+
               {
                 errors === "Successfully registered user" ?
                   <div style={{ textAlign: "center", color: "green" }}>{errors}</div> :
