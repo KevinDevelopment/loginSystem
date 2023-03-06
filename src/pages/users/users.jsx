@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardTitle, CardBody } from "reactstrap";
+import { FcAbout } from "react-icons/fc";
 
 export default function ListOfUsers() {
 
@@ -36,7 +36,7 @@ export default function ListOfUsers() {
           <div className="container">
             <div className="card mt-4">
               <div className="card-header">
-                <div>{`Numero de identificação: ${user.id}`}</div>
+                <div><FcAbout size={50}/>{`Numero de identificação: ${user.id}`}</div>
               </div>
               <div className="card-body">
                 <div>{`Nome: ${user.name}`}</div>
