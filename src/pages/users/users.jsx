@@ -33,11 +33,18 @@ export default function ListOfUsers() {
     <ul>
       {list.map((user) => {
         return (
-          <div>
-            <li>{user.id}</li>
-            <li>{user.name}</li>
-            <li>{user.email}</li>
+          <div className="container">
+            <div className="card mt-4">
+              <div className="card-header">
+                <div>{`Numero de identificação: ${user.id}`}</div>
+              </div>
+              <div className="card-body">
+                <div>{`Nome: ${user.name}`}</div>
+                <div>{`Email: ${user.email}`}</div>
+              </div>
+            </div>
           </div>
+
         );
       })}
     </ul>
