@@ -36,7 +36,7 @@ export default function ListOfUsers() {
           <div className="container">
             <div className="card mt-4">
               <div className="card-header">
-                <div><FcAbout size={50}/>{`Numero de identificação: ${user.id}`}</div>
+                <div><FcAbout size={30}/>{`Numero de identificação: ${user.id}`}</div>
               </div>
               <div className="card-body">
                 <div>{`Nome: ${user.name}`}</div>
