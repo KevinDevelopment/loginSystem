@@ -1,9 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { FcAbout } from "react-icons/fc";
+
+import vegeta from "../../images/vegeta4.png"
+
+import ComponentNavbar from "../../components/navbar";
+
+import { AiOutlineAudit } from "react-icons/ai";
+import { AiOutlineUser } from "react-icons/ai";
+import { AiOutlineMail } from "react-icons/ai";
+import { FaUserEdit } from "react-icons/fa";
+import { FaUserMinus } from "react-icons/fa";
+
+import { Button } from "reactstrap";
 
 export default function ListOfUsers() {
 
   const [list, setList] = useState([]);
+  const [messages, setMessages] = useState([]);
 
   const token = `Bearer ${localStorage.getItem("token")}`;
 
@@ -22,31 +34,60 @@ export default function ListOfUsers() {
       }
     }).then(response => response.json())
       .then(json => {
-        setList(json.users);
+        setList(json.message);
         console.log(json);
       }).catch(err => {
         console.log(err);
       })
-  }, []);
+  }, [messages]);
+
+
+  function deleteUserById(userId) {
+    fetch(`http://localhost:8080/user/${userId}`, {
+      method: "DELETE",
+      headers: {
+        "Authorization": token
+      }
+    })
+      .then(response => response.json())
+      .then(json => {
+        console.log(json);
+        setMessages(json.messages);
+      })
+      .catch(err => console.log(err))
+  }
 
   return (
-    <ul>
-      {list.map((user) => {
-        return (
-          <div className="container">
-            <div className="card mt-4">
-              <div className="card-header">
-                <div><FcAbout size={30}/>{`Numero de identificação: ${user.id}`}</div>
-              </div>
-              <div className="card-body">
-                <div>{`Nome: ${user.name}`}</div>
-                <div>{`Email: ${user.email}`}</div>
-              </div>
-            </div>
-          </div>
+    <div>
+      <ComponentNavbar />
 
-        );
-      })}
-    </ul>
+      {Array.isArray(list) ?
+        <ul className="imageUsers">
+          {list.map((user) => {
+            return (
+              <div className="container" key={user.id}>
+                <div className="card mt-4">
+                  <div className="card-header">
+                    <div><AiOutlineAudit size={23} />{`ID: ${user.id}`}</div>
+                  </div>
+                  <div className="card-body">
+                    <div className="mb-2"><AiOutlineUser size={23} />{` ${user.name}`}</div>
+                    <div><AiOutlineMail size={23} />{` ${user.email}`}</div>
+                  </div>
+                  <div className="card-footer">
+                    <Button className="me-2" color="warning">Alterar <FaUserEdit size={23} /></Button>
+                    <Button className="me-2" color="danger" onClick={() => deleteUserById(`${user.id}`)}>Excluir <FaUserMinus size={23} /></Button>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </ul> :
+
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+          <img width={300} alt="vegeta" src={vegeta} style={{ marginTop: 60 }} />
+          <div style={{ fontFamily: "italic", fontStyle: "italic", fontSize: 20 }}>"{list}"</div>
+        </div>}
+    </div>
   );
 }

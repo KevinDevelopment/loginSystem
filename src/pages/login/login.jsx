@@ -28,7 +28,7 @@ export default function Login() {
         setErrors(json.message);
         localStorage.setItem("token", json.token);
 
-        if (json.message === "Successfully logged in") {
+        if (json.message === "Você será redirecionado em breve") {
 
           setSpinner(true)
 
@@ -71,7 +71,7 @@ export default function Login() {
               }
 
               {
-                errors === "Successfully logged in" ?
+                errors === "Você será redirecionado em breve" ?
                   <div style={{ textAlign: "center", color: "green" }}>{errors}</div> :
                   <div style={{ textAlign: "center", color: "red" }}>{errors}</div>
 

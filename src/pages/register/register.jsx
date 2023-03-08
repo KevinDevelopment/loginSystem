@@ -28,7 +28,7 @@ export default function Register() {
       .then(response => response.json())
       .then(json => {
         setErrors(json.message);
-        if (json.message === "Successfully registered user") {
+        if (json.message === "Você será redirecionado em breve") {
 
           setSpinner(true);
           
@@ -74,7 +74,7 @@ export default function Register() {
               }
 
               {
-                errors === "Successfully registered user" ?
+                errors === "Você será redirecionado em breve" ?
                   <div style={{ textAlign: "center", color: "green" }}>{errors}</div> :
                   <div style={{ textAlign: "center", color: "red" }}>{errors}</div>
 
