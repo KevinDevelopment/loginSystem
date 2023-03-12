@@ -32,7 +32,7 @@ export default function RegisterNewUser() {
         if (json.message === "Você será redirecionado em breve") {
 
           setSpinner(true);
-          
+
           setTimeout(() => {
             navigate("/users");
           }, 2000);

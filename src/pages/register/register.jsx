@@ -31,7 +31,7 @@ export default function Register() {
         if (json.message === "Você será redirecionado em breve") {
 
           setSpinner(true);
-          
+
           setTimeout(() => {
             navigate("/");
           }, 2000);

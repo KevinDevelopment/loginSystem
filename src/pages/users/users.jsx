@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import vegeta from "../../images/rem.png"
 
 import ComponentNavbar from "../../components/navbar";
+import ImageComponent from "./components/image";
 
 import { AiOutlineAudit } from "react-icons/ai";
 import { AiOutlineUser } from "react-icons/ai";
@@ -86,12 +87,7 @@ export default function ListOfUsers() {
               </div>
             );
           })}
-        </ul> :
-
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-          <img width={300} alt="vegeta" src={vegeta} style={{ marginTop: 60 }} />
-          <div style={{ fontFamily: "italic", fontStyle: "italic", fontSize: 20 }}>"{list}"</div>
-        </div>}
+        </ul> : <ImageComponent image={vegeta} message={list} /> }
     </div>
   );
 }
