@@ -16,7 +16,7 @@ export default function Register() {
 
 
   function sendUserData() {
-    fetch("http://localhost:8080/user", {
+    fetch("http://localhost:8080/register/user", {
       method: "POST",
       body: JSON.stringify({
         name: name,

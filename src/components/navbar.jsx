@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import {
   Collapse,
   Navbar,
@@ -6,12 +7,7 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavbarText,
+  NavLink
 } from 'reactstrap';
 
 export default function ComponentNavbar(args) {
@@ -21,19 +17,24 @@ export default function ComponentNavbar(args) {
 
   return (
     <div>
-      <Navbar className="navbar navbar-dark bg-dark" expand="md">
-        <NavbarBrand href="/">reactstrap</NavbarBrand>
+      <Navbar className="navbar navbar-dark bg-dark" expand="md" >
+        <NavbarBrand href="/">Gestor de usuários</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="me-auto" navbar>
+
             <NavItem>
-              <NavLink href="/signin">Logout</NavLink>
+              <NavLink href="/login">Sair</NavLink>
             </NavItem>
+
             <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">
-                GitHub
-              </NavLink>
+              <NavLink href="/register/user">Cadastrar novo usuário</NavLink>
             </NavItem>
+
+            <NavItem>
+              <NavLink href="/users" >Usuários</NavLink>
+            </NavItem>
+
           </Nav>
         </Collapse>
       </Navbar>

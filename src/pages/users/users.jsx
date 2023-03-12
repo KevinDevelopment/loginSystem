@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-import vegeta from "../../images/vegeta4.png"
+import vegeta from "../../images/rem.png"
 
 import ComponentNavbar from "../../components/navbar";
 
@@ -39,7 +40,7 @@ export default function ListOfUsers() {
       }).catch(err => {
         console.log(err);
       })
-  }, [messages]);
+  }, []);
 
 
   function deleteUserById(userId) {
@@ -52,7 +53,6 @@ export default function ListOfUsers() {
       .then(response => response.json())
       .then(json => {
         console.log(json);
-        setMessages(json.messages);
       })
       .catch(err => console.log(err))
   }
@@ -66,19 +66,23 @@ export default function ListOfUsers() {
           {list.map((user) => {
             return (
               <div className="container" key={user.id}>
+
                 <div className="card mt-4">
                   <div className="card-header">
                     <div><AiOutlineAudit size={23} />{`ID: ${user.id}`}</div>
                   </div>
+
                   <div className="card-body">
                     <div className="mb-2"><AiOutlineUser size={23} />{` ${user.name}`}</div>
                     <div><AiOutlineMail size={23} />{` ${user.email}`}</div>
                   </div>
+
                   <div className="card-footer">
-                    <Button className="me-2" color="warning">Alterar <FaUserEdit size={23} /></Button>
+                    <Link to={`/change/user/${user.id}`}><Button className="me-2" color="warning">Alterar <FaUserEdit size={23} /></Button></Link>
                     <Button className="me-2" color="danger" onClick={() => deleteUserById(`${user.id}`)}>Excluir <FaUserMinus size={23} /></Button>
                   </div>
                 </div>
+
               </div>
             );
           })}
