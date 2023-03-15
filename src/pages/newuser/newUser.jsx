@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { Form, div, Label, Input, Button, Spinner } from "reactstrap";
+import { Form, Label, Input, Button, Spinner } from "reactstrap";
 
 import logo from "../../images/Colorido 1.png";
 
