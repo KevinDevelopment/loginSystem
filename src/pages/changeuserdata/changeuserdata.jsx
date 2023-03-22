@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-
 import { Form, Label, Input, Button, Spinner } from "reactstrap";
-
 import logo from "../../images/Colorido 1.png";
-
 import ComponentNavbar from "../../components/navbar";
 
 export default function ChangeUserData() {

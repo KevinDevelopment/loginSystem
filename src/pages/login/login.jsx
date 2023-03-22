@@ -42,8 +42,7 @@ export default function Login() {
       .catch(err => console.log(err))
   }
 
-  console.log(errors)
-
+  
   return (
     <div className="imageLogin" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }} >
       <div className="card" style={{ width: "20rem" }}>

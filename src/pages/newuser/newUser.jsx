@@ -16,6 +16,8 @@ export default function RegisterNewUser() {
   const [errors, setErrors] = useState();
   const [spinner, setSpinner] = useState(false);
 
+  const token = `Bearer ${localStorage.getItem("token")}`;
+
   function sendUserData() {
     fetch("http://localhost:8080/user", {
       method: "POST",
@@ -24,7 +26,10 @@ export default function RegisterNewUser() {
         email: email,
         password: password
       }),
-      headers: { "Content-type": "application/json;charset=UTF-8" }
+      headers: { 
+        "Content-type": "application/json;charset=UTF-8",
+        "Authorization": token
+       }
     })
       .then(response => response.json())
       .then(json => {
@@ -83,9 +88,8 @@ export default function RegisterNewUser() {
 
                 }
               </div>
-
-              <Link to="/"><Button color="danger">Login</Button></Link>
-              <Button color="danger" className="ms-4" onClick={() => sendUserData()}>Registre-se</Button>
+             
+              <Button color="danger" className="m-auto" onClick={() => sendUserData()}>Cadastrar</Button>
 
             </Form>
           </div>
