@@ -79,12 +79,12 @@ export default function ChangeUserData() {
                 {
                   errors === "Atualizado com sucesso" ?
                     <div style={{ textAlign: "center", color: "green" }}>{errors}</div> :
-                    <div style={{ textAlign: "center", color: "red" }}>{errors}</div>
+                    <div style={{ textAlign: "center", color: "black" }}>{errors}</div>
 
                 }
               </div>
 
-              <Button color="danger" onClick={() => changeUserData()}>Alterar dados</Button>
+              <Button color="danger" type="submit" onClick={() => changeUserData()}>Alterar dados</Button>
 
             </Form>
           </div>

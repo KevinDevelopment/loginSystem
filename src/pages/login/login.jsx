@@ -72,7 +72,7 @@ export default function Login() {
               {
                 errors === "Você será redirecionado em breve" ?
                   <div style={{ textAlign: "center", color: "green" }}>{errors}</div> :
-                  <div style={{ textAlign: "center", color: "red" }}>{errors}</div>
+                  <div style={{ textAlign: "center", color: "black" }}>{errors}</div>
 
               }
             </div>
